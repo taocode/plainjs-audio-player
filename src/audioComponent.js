@@ -15,22 +15,21 @@ class AudioPlayer extends HTMLElement {
         // Load audio player for each track
         this.players = [];
         let tracks = this.tracks;
-        let paths = this.paths;
 
-        if (!tracks || !paths || !Array.isArray(tracks) || !Array.isArray(paths) || tracks.length !== paths.length) {
+        if (!tracks || !Array.isArray(tracks)) {
             console.error("Cannot load audio player, missing tracks or paths to files");
             return;
         }
 
-        for (let [i, title] of tracks.entries()) {
+        for (let [i, track] of tracks.entries()) {
             let div = document.createElement('div');
-            div.innerHTML = AudioPlayer.trackTemplate(title, i);
+            div.innerHTML = AudioPlayer.trackTemplate(track.title, i);
             this.shadowRoot.querySelector('.audio-top').appendChild(div.children[0]);
 
             let audio = new Audio();
             audio.addEventListener('timeupdate', this.updateCursorFromTrack.bind(this));
             audio.preload = 'none';
-            audio.src = paths[i];
+            audio.src = track.src;
             this.players.push(audio);
         }
 
@@ -204,7 +203,7 @@ class AudioPlayer extends HTMLElement {
             // play, and set up recurring cursor updates
             currentPlayer.muted = this.muted;
             currentWrapper.querySelector('.audio-icon').classList.add('audio-icon-pause');
-            this.shadowRoot.querySelector('.time-bar-title').innerText = this.tracks[this.currentTrack];
+            this.shadowRoot.querySelector('.time-bar-title').innerText = this.tracks[this.currentTrack].title;
             currentPlayer.play();
         } else {
             currentPlayer.pause();
@@ -288,11 +287,14 @@ class AudioPlayer extends HTMLElement {
     }
 
     get tracks() {
-        return JSON.parse(this.getAttribute('tracks'));
+        return [...this.querySelectorAll('audio')]
     }
 
     get paths() {
-        return JSON.parse(this.getAttribute('paths'));
+        const tracks = [...this.querySelectorAll('audio')]
+        const paths = tracks.map(c => c.src)
+        console.log('get paths()',paths)
+        return paths;
     }
 
     static isFirefox() {

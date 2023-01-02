@@ -7,9 +7,15 @@
 
 <body>
 	<h3 style="text-align:center">Custom UI for HTML5 audio element</h3>
-	<audio-player
-	tracks='["One", "Two", "Three", "Four", "Five"]'
-	paths='["../recordings/track01.mp3", "./recordings/track02.mp3", "../recordings/track03.mp3", "../recordings/track04.mp3", "../recordings/track05.mp3"]'>
+	<audio-player>
+	<audio 
+		title="Lumbini"
+		src="https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Lumbini.mp3" 
+		preload="metadata"></audio>
+	<audio 
+		title="Practice of Giving"
+		src="https://download.pariyatti.org/free/_moIbLs95/Dana_The_Practice_of_Giving_single.mp3" 
+		preload="metadata"></audio>
 </audio-player>
 
 <script src="./dist/index.js" type="module"></script>
