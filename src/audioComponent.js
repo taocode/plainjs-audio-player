@@ -26,11 +26,8 @@ class AudioPlayer extends HTMLElement {
             div.innerHTML = AudioPlayer.trackTemplate(track.title, i);
             this.shadowRoot.querySelector('.audio-top').appendChild(div.children[0]);
 
-            let audio = new Audio();
-            audio.addEventListener('timeupdate', this.updateCursorFromTrack.bind(this));
-            audio.preload = 'none';
-            audio.src = track.src;
-            this.players.push(audio);
+            track.addEventListener('timeupdate', this.updateCursorFromTrack.bind(this));
+            this.players.push(track);
         }
 
         this.addEventHandlers();
