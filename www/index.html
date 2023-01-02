@@ -3,14 +3,16 @@
 
 <head>
 	<meta charset="UTF-8">
-	<script src="./dist/index.js" type="module"></script>
 </head>
 
 <body>
-	<h2>Player:</h2>
-	<taocode-audio-player></taocode-audio-player>
-	<h2>Counter:</h2>
-	<my-counter></my-counter>
+	<h3 style="text-align:center">Custom UI for HTML5 audio element</h3>
+	<audio-player
+	tracks='["One", "Two", "Three", "Four", "Five"]'
+	paths='["../recordings/track01.mp3", "./recordings/track02.mp3", "../recordings/track03.mp3", "../recordings/track04.mp3", "../recordings/track05.mp3"]'>
+</audio-player>
+
+<script src="./dist/index.js" type="module"></script>
 </body>
 
 </html>

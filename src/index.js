@@ -1,2 +1,2 @@
 import './counter.js'
-import './audio.js'
+import './audioComponent.js'
