@@ -287,13 +287,6 @@ class AudioPlayer extends HTMLElement {
         return [...this.querySelectorAll('audio')]
     }
 
-    get paths() {
-        const tracks = [...this.querySelectorAll('audio')]
-        const paths = tracks.map(c => c.src)
-        console.log('get paths()',paths)
-        return paths;
-    }
-
     static isFirefox() {
         return /Firefox/.test(navigator.userAgent);
     }
